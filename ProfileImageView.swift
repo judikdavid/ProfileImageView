@@ -1,15 +1,14 @@
 //
-//  JUDProfileImageView.swift
-//  Happy Bridge
+//  ProfileImageView.swift
 //
 //  Created by Judik Dávid on 2015.03.20.
-//  Copyright (c) 2015 Happy Bridge. All rights reserved.
+//  Copyright (c) 2015 All rights reserved.
 //
 
 import UIKit
 
 @IBDesignable
-class JUDProfileImageView: UIView {
+class ProfileImageView: UIView {
 
     var imageLayer: CALayer!
     var image: UIImage? {
