@@ -7,10 +7,19 @@
 
 import UIKit
 
+enum NameOrder {
+    case firstNameFirst, lastNameFirst
+}
+
 @IBDesignable
 class ProfileImageView: UIView {
 
-    var imageLayer: CALayer!
+    private var imageLayer: CALayer!
+    
+    @IBInspectable var lastName: String?
+    @IBInspectable var firstName: String?
+    var nameOrder = NameOrder.firstNameFirst
+
     var image: UIImage? {
         didSet { updateLayerProperties() }
     }
@@ -18,13 +27,16 @@ class ProfileImageView: UIView {
         didSet { updateLayerProperties() }
     }
     @IBInspectable var overlayColor: UIColor = UIColor.whiteColor()
-    @IBInspectable var borderWidth: CGFloat = 2.0
+    @IBInspectable var borderWidth: CGFloat = 0.0
     @IBInspectable var borderColor: UIColor = UIColor.lightGrayColor()
-    var overlayLayer: CALayer!
-    var borderLayer: CAShapeLayer!
+    private var overlayLayer: CALayer!
+    private var borderLayer: CAShapeLayer!
+    private var initialLayer = UILabel()
  
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        self.backgroundColor = UIColor.clearColor()
         
         if borderLayer == nil {
             borderLayer = CAShapeLayer()
@@ -38,6 +50,7 @@ class ProfileImageView: UIView {
             borderLayer.lineWidth = borderWidth
             borderLayer.strokeColor = borderColor.CGColor
         }
+        
         borderLayer.frame = layer.bounds
         
         if imageLayer == nil {
@@ -77,13 +90,27 @@ class ProfileImageView: UIView {
             layer.addSublayer(overlayLayer)
         }
         
+        let fontSize = self.bounds.height / 2.2
+        
+        initialLayer.text = self.getInitials(self.firstName, lastName: self.lastName, nameOrder: self.nameOrder)
+        initialLayer.textAlignment = .Center
+        initialLayer.font = UIFont.systemFontOfSize(fontSize, weight: UIFontWeightLight)
+        initialLayer.textColor = UIColor.whiteColor()
+        initialLayer.sizeToFit()
+        self.initialLayer.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds))
+        self.addSubview(initialLayer)
+        
         updateLayerProperties()
     }
     
     func updateLayerProperties() {
         if imageLayer != nil {
             if let i = image {
+                initialLayer.hidden = true
                 imageLayer.contents = i.CGImage
+            }
+            else {
+                initialLayer.hidden = false
             }
         }
         
@@ -97,6 +124,20 @@ class ProfileImageView: UIView {
         }
     }
     
+    func getInitials(firstName: String?, lastName: String?, nameOrder: NameOrder) -> String? {
+        if let fn = firstName, ln = lastName {
+            switch nameOrder {
+                case .firstNameFirst:
+                    return String(fn[fn.startIndex]) + String(ln[ln.startIndex])
+                case .lastNameFirst:
+                    return String(ln[fn.startIndex]) + String(fn[ln.startIndex])
+            }
+        }
+        else {
+            return nil
+        }
+    }
+
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         
@@ -111,4 +152,6 @@ class ProfileImageView: UIView {
         }
         
     }
+    
 }
+
