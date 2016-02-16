@@ -13,3 +13,26 @@ Just include the ProfileImageView.swift class, set this custom class on an UIVie
 `@IBOutlet weak var profileImageView: ProfileImageView!`
 
 `profileImageView.image = UIImage(named: "dad")`
+
+## Usage
+
+To run the example project, clone the repo, and run `pod install` from the Example directory first.
+
+## Requirements
+
+## Installation
+
+ProfileImageView is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod "ProfileImageView"
+```
+
+## Author
+
+David Judik, judik.david@gmail.com
+
+## License
+
+ProfileImageView is available under the MIT license. See the LICENSE file for more info.

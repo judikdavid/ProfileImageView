@@ -1,0 +1,13 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+target 'ProfileImageView_Example', :exclusive => true do
+  pod 'ProfileImageView', :path => '../'
+end
+
+target 'ProfileImageView_Tests', :exclusive => true do
+  pod 'ProfileImageView', :path => '../'
+
+  pod 'Quick', '~> 0.8.0'
+  pod 'Nimble', '3.0.0'
+end
