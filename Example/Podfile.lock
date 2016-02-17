@@ -1,0 +1,20 @@
+PODS:
+  - Nimble (3.0.0)
+  - ProfileImageView (0.1.0)
+  - Quick (0.8.0)
+
+DEPENDENCIES:
+  - Nimble (= 3.0.0)
+  - ProfileImageView (from `../`)
+  - Quick (~> 0.8.0)
+
+EXTERNAL SOURCES:
+  ProfileImageView:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
+  ProfileImageView: eeb2f5482053747fb90f80b9fa8b1d34b97492a0
+  Quick: 563d0f6ec5f72e394645adb377708639b7dd38ab
+
+COCOAPODS: 0.39.0

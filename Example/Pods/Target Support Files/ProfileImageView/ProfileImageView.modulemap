@@ -1,0 +1,6 @@
+framework module ProfileImageView {
+  umbrella header "ProfileImageView-umbrella.h"
+
+  export *
+  module * { export * }
+}

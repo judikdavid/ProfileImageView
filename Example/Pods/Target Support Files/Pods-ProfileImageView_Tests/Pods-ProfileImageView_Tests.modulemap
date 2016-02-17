@@ -1,0 +1,6 @@
+framework module Pods_ProfileImageView_Tests {
+  umbrella header "Pods-ProfileImageView_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
